@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "todo-task-list-angular": {
+    "to-do-task-list-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/todo-task-list-angular",
+            "outputPath": "dist/to-do-task-list-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "todo-task-list-angular:build:production"
+              "buildTarget": "to-do-task-list-angular:build:production"
             },
             "development": {
-              "buildTarget": "todo-task-list-angular:build:development"
+              "buildTarget": "to-do-task-list-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "todo-task-list-angular:build"
+            "buildTarget": "to-do-task-list-angular:build"
           }
         },
         "test": {
@@ -97,5 +97,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b0756a8c-051e-426a-b385-feae36ccbe71"
   }
 }
