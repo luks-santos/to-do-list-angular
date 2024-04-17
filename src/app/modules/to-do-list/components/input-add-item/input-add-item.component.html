@@ -1,12 +1,22 @@
 <header [ngClass]="{
-   'has-items':inputListItems.length > 1,
+   'has-items': inputListItems.length,
 }"
 >
-   @if (inputListItems.length > 1) {
+   @if (inputListItems.length) {
       <h1>Minha lista</h1>
    }
-   <div>
-      <label class="input-label-text" for="inputValue">
+   <div
+   [ngClass]="{
+      'container': !inputListItems.length,
+   }"
+   >
+      <label 
+         class="input-label-text" 
+         for="inputValue"
+         [ngClass]="{
+            'remove-margin-bottom': !inputListItems.length,
+         }"
+      >
          <input 
             type="text" 
             id="inputValue"
@@ -14,9 +24,6 @@
             autofocus
             (keyup.enter)="focusAndAddItem(inputText.value)"
             #inputText
-            [ngClass]="{
-               'remove-margin-bottom':inputListItems.length > 1,
-            }"
          >
          <button 
             (click)="focusAndAddItem(inputText.value)"
