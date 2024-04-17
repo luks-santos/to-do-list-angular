@@ -13,7 +13,7 @@ export class ListComponent {
 
   public addItem = signal(true);
 
-  #setListItems = signal<iListItems[]>([this.#parseItems()]);
+  #setListItems = signal<iListItems[]>(this.#parseItems());
   public getListItems = this.#setListItems.asReadonly();
 
   #parseItems() {
