@@ -30,6 +30,7 @@
     [inputListItems]="listItemStage('pending')"
     (outputUpdatedItemCheckbox)="updateItemCheckbox($event)"
     (outputUpdatedItemText)="updateItemText($event)"
+    (outputDeleteItem)="deleteItem($event)"
   />
   } @if (listItemStage('completed').length) {
   <h2>Concluídas</h2>
@@ -37,6 +38,7 @@
     [inputListItems]="listItemStage('completed')"
     (outputUpdatedItemCheckbox)="updateItemCheckbox($event)"
     (outputUpdatedItemText)="updateItemText($event)"
+    (outputDeleteItem)="deleteItem($event)"
   />
   }
 </main>
