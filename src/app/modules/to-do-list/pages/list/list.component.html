@@ -1,49 +1,47 @@
 @if (!getListItems().length) {
-   <div class="container">
-      <img src="assets/img/task-list-null.png" 
-         alt="Sua Lista está vazia - imagem ilustrativa"
-         loading="eager"
-      >
-   
-      @if(addItem()) {
-         <button class="btn btn-primary" (click)="addItem.set(false)">
-            Crie uma lista de tarefas
-         </button>
-      } @else {
-         <app-input-add-item 
-            [inputListItems]="getListItems()" 
-            (outputListItem)="getInputAndAddItem($event)" 
-         />
-      }
-   </div>
+<div class="container">
+  <img
+    src="assets/img/task-list-null.png"
+    alt="Sua Lista está vazia - imagem ilustrativa"
+    loading="eager"
+  />
+
+  @if(addItem()) {
+  <button class="btn btn-primary" (click)="addItem.set(false)">
+    Crie uma lista de tarefas
+  </button>
+  } @else {
+  <app-input-add-item
+    [inputListItems]="getListItems()"
+    (outputListItem)="getInputAndAddItem($event)"
+  />
+  }
+</div>
 } @else {
-   <app-input-add-item 
-      [inputListItems]="getListItems()" 
-      (outputListItem)="getInputAndAddItem($event)" 
-   />
+<app-input-add-item
+  [inputListItems]="getListItems()"
+  (outputListItem)="getInputAndAddItem($event)"
+/>
 
-   <main class="container">
-      @if (listItemStage('pending').length) {
-         <h2>Pendências</h2>
-         <app-input-list-item 
-            [inputListItems]="listItemStage('pending')" 
-            (outputUpdatedItemCheckbox)="updateItemCheckbox($event)"
-         />
-      } 
+<main class="container">
+  @if (listItemStage('pending').length) {
+  <h2>Pendências</h2>
+  <app-input-list-item
+    [inputListItems]="listItemStage('pending')"
+    (outputUpdatedItemCheckbox)="updateItemCheckbox($event)"
+  />
+  } @if (listItemStage('completed').length) {
+  <h2>Concluídas</h2>
+  <app-input-list-item
+    [inputListItems]="listItemStage('completed')"
+    (outputUpdatedItemCheckbox)="updateItemCheckbox($event)"
+  />
+  }
+</main>
 
-      @if (listItemStage('completed').length) {
-         <h2>Concluídas</h2>
-         <app-input-list-item 
-            [inputListItems]="listItemStage('completed')"
-            (outputUpdatedItemCheckbox)="updateItemCheckbox($event)"
-         />
-      } 
-
-   </main>
-
-   <footer>
-      <button class="btn btn-danger" (click)="deleteAllItems()">
-         Deletar todos os itens
-      </button>
-   </footer>
+<footer>
+  <button class="btn btn-danger" (click)="deleteAllItems()">
+    Deletar todos os itens
+  </button>
+</footer>
 }

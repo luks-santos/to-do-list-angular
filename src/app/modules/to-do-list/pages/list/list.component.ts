@@ -8,10 +8,9 @@ import { InputListItemComponent } from '../../components/input-list-item/input-l
   standalone: true,
   imports: [InputAddItemComponent, InputListItemComponent],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
 })
 export class ListComponent {
-
   public addItem = signal(true);
 
   #setListItems = signal<iListItems[]>(this.#parseItems());
@@ -22,7 +21,10 @@ export class ListComponent {
   }
 
   public getInputAndAddItem(value: iListItems) {
-    localStorage.setItem('@my-list', JSON.stringify([...this.#setListItems(), value]));
+    localStorage.setItem(
+      '@my-list',
+      JSON.stringify([...this.#setListItems(), value])
+    );
 
     return this.#setListItems.set(this.#parseItems());
   }
@@ -43,7 +45,7 @@ export class ListComponent {
 
   public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
     this.#setListItems.update((oldValue: iListItems[]) => {
-      oldValue.filter(res => {
+      oldValue.filter((res) => {
         if (res.id === newItem.id) {
           res.checked = newItem.checked;
           return res;
@@ -53,7 +55,10 @@ export class ListComponent {
       return oldValue;
     });
 
-    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItems()));
+    return localStorage.setItem(
+      '@my-list',
+      JSON.stringify(this.#setListItems())
+    );
   }
 
   public deleteAllItems() {

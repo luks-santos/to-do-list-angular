@@ -6,15 +6,14 @@ import { iListItems } from '../../interfaces/iListItems.interface';
   standalone: true,
   imports: [],
   templateUrl: './input-list-item.component.html',
-  styleUrl: './input-list-item.component.scss'
+  styleUrl: './input-list-item.component.scss',
 })
 export class InputListItemComponent {
+  @Input({ required: true }) public inputListItems: iListItems[] = [];
 
-  @Input({ required: true}) public inputListItems: iListItems[] = [];
-
-  @Output() public outputUpdatedItemCheckbox = new EventEmitter<{ 
+  @Output() public outputUpdatedItemCheckbox = new EventEmitter<{
     id: string;
-    checked: boolean; 
+    checked: boolean;
   }>();
 
   public updateItemCheckbox(id: string, checked: boolean) {
