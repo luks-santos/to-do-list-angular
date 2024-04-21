@@ -13,6 +13,7 @@
     [value]="item.value"
     placeholder="Adicione um valor"
     autofocus
+    (input)="updateItemText(item.id, inputValue.value)"
   />
   <button class="btn btn-danger-circle" title="Delete este item"></button>
 </label>
