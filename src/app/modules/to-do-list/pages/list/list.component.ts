@@ -3,6 +3,7 @@ import { InputAddItemComponent } from '../../components/input-add-item/input-add
 import { iListItems } from '../../interfaces/iListItems.interface';
 import { InputListItemComponent } from '../../components/input-list-item/input-list-item.component';
 import { ELocalStorage } from '../../enum/ELocalStorage';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -82,15 +83,45 @@ export class ListComponent {
   }
 
   public deleteItem(id: string) {
-    this.#setListItems.update((oldValue: iListItems[]) => {
-      return oldValue.filter((res) => res.id !== id);
-    });
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você não poderá reverter essa ação!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, deletar item!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Deletado!',
+          text: 'Item removido.',
+          icon: 'success',
+        });
+        this.#setListItems.update((oldValue: iListItems[]) => {
+          return oldValue.filter((res) => res.id !== id);
+        });
 
-    return this.#updateLocalStorage();
+        return this.#updateLocalStorage();
+      }
+    });
   }
 
   public deleteAllItems() {
-    localStorage.removeItem(ELocalStorage.MY_LIST);
-    return this.#setListItems.set(this.#parseItems());
+    Swal.fire({
+      title: 'Tem certeza?',
+      text: 'Você não poderá reverter essa ação!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, deletar tudo!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Deletado!',
+          text: 'Todos os itens foram removidos.',
+          icon: 'success',
+        });
+        localStorage.removeItem(ELocalStorage.MY_LIST);
+        return this.#setListItems.set(this.#parseItems());
+      }
+    });
   }
 }
